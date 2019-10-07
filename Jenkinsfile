@@ -37,7 +37,7 @@ pipeline {
 
         stage ('Acceptance') {
             steps {
-                sh 'curl "http://52.90.38.217:8081/nexus/content/repositories/releases/com/ntrs/liquibase/$version/liquibase-1.1.3.jar" \
+                sh 'curl "http://52.90.38.217:8081/nexus/content/repositories/releases/com/ntrs/liquibase/1.1.3/liquibase-1.1.3.jar" \
      -o liquibase-1.1.3.jar' 
                 sh 'ls -R'
                 sh 'java -jar -Dspring.profiles.active=uat liquibase-1.1.3.jar'
