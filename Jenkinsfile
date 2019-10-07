@@ -18,7 +18,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn install -Dversion=${version}-SNAPSHOT' 
+                sh 'mvn install -Dversion="${version}"-SNAPSHOT' 
             }
         }
 
