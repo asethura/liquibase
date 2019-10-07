@@ -54,4 +54,12 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>MyCo Internal Repository</name>
+			<url>http://52.90.38.217:8081/nexus/content/repositories/releases/</url>
+		</repository>
+  </distributionManagement>
+
 </project>
