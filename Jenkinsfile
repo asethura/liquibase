@@ -16,13 +16,23 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
-                }
+                sh 'mvn install' 
+                //archiveArtifacts artifacts: 'target/liquibase-0.0.1-SNAPSHOT.jar'
             }
         }
+
+        stage ('System') {
+            steps {
+                sh 'java -jar tarrget/liquibase-0.0.1-SNAPSHOT.jar  -Dspring.profiles.active=sys' 
+            }
+        }
+
+        stage ('Publish') {
+            steps {
+                sh 'mvn deploy' 
+            }
+        }
+
+       
     }
 }
