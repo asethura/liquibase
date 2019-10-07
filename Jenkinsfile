@@ -1,5 +1,6 @@
+#!groovy
+version = '1.1.1'
 pipeline {
-    version = '1.1.1'
     agent any
     tools {
         maven 'Maven'
