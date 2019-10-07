@@ -18,20 +18,20 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn install -Dversion="$version"-SNAPSHOT' 
+                sh 'mvn install -Dversion=${version}-SNAPSHOT' 
             }
         }
 
         stage ('System') {
             steps {
                 sh 'ls -R'
-                sh 'java -jar -Dspring.profiles.active=sys target/liquibase-"$version"-SNAPSHOT.jar' 
+                sh 'java -jar -Dspring.profiles.active=sys target/liquibase-${version}-SNAPSHOT.jar' 
             }
         }
 
         stage ('Release') {
             steps {
-                sh 'mvn deploy -Dversion="$version"' 
+                sh 'mvn deploy -Dversion=${version}' 
             }
         }
 
