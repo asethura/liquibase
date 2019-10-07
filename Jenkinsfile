@@ -1,4 +1,5 @@
 pipeline {
+    version = '1.1.1'
     agent any
     tools {
         maven 'Maven'
@@ -16,21 +17,27 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn install -Dversion=1.1.0-SNAPSHOT' 
-                //archiveArtifacts artifacts: 'target/liquibase-0.0.1-SNAPSHOT.jar'
+                sh 'mvn install -Dversion=$version-SNAPSHOT' 
             }
         }
 
         stage ('System') {
             steps {
                 sh 'ls -R'
-                sh 'java -jar -Dspring.profiles.active=sys target/liquibase-1.1.0-SNAPSHOT.jar  ' 
+                sh 'java -jar -Dspring.profiles.active=sys target/liquibase-$version-SNAPSHOT.jar' 
             }
         }
 
         stage ('Release') {
             steps {
-                sh 'mvn deploy -Dversion=1.1.0' 
+                sh 'mvn deploy -Dversion=$version' 
+            }
+        }
+
+        stage ('Acceptance') {
+            steps {
+                sh 'curl "http://52.90.38.217:8081/nexus/content/repositories/releases/com/ntrs/liquibase/$version/liquibase-$version.jar" \
+     -o liquibase-$version.jar' 
             }
         }
 
