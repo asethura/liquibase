@@ -24,7 +24,7 @@ pipeline {
         stage ('System') {
             steps {
                 sh 'ls -R'
-                sh 'java -jar target/liquibase-0.0.1-SNAPSHOT.jar  -Dspring.profiles.active=sys' 
+                sh 'java -jar -Dspring.profiles.active=sys target/liquibase-0.0.1-SNAPSHOT.jar  ' 
             }
         }
 
