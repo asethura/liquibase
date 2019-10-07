@@ -39,7 +39,8 @@ pipeline {
             steps {
                 sh 'curl "http://52.90.38.217:8081/nexus/content/repositories/releases/com/ntrs/liquibase/$version/liquibase-1.1.2.jar" \
      -o liquibase-1.1.2.jar' 
-                sh 'java -jar -Dspring.profiles.active=uat liquibase-1.1.2-SNAPSHOT.jar'
+                sh 'ls -R'
+                sh 'java -jar -Dspring.profiles.active=uat liquibase-1.1.2.jar'
             }
         }
 
